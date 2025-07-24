@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:test/pages/home/home_page.dart';
+import 'package:test/pages/home/studentlist_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
         if (response.statusCode == 200) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(builder: (context) => const StudentListScreen()),
           );
         } else {
           setState(() {
