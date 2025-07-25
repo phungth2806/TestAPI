@@ -1,5 +1,6 @@
 // lib/pages/home/home_page.dart
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test/widget/bottomtabbar_custom.dart';
 
 class StudentListScreen extends StatefulWidget {
@@ -81,21 +82,26 @@ class _StudentListScreenState extends State<StudentListScreen>
                       ],
                     ),
                     Expanded(
-                      child: ListView(
-                        children: [
-                          StudentCard(
-                            name: 'Nguyễn Phú Xuân Thảo',
-                            studentId: '72DCHT20030',
-                          ),
-                          StudentCard(
-                            name: 'Sách nghệ văn lớp 6 tập 2',
-                            studentId: '72DCHT20004',
-                          ),
-                          StudentCard(
-                            name: 'Nguyễn Đình Minh',
-                            studentId: '72DCHT20033',
-                          ),
-                        ],
+                      child: InkWell(
+                        onTap: () {
+                          context.goNamed('feature');
+                        },
+                        child: ListView(
+                          children: [
+                            StudentCard(
+                              name: 'Nguyễn Phú Xuân Thảo',
+                              studentId: '72DCHT20030',
+                            ),
+                            StudentCard(
+                              name: 'Sách nghệ văn lớp 6 tập 2',
+                              studentId: '72DCHT20004',
+                            ),
+                            StudentCard(
+                              name: 'Nguyễn Đình Minh',
+                              studentId: '72DCHT20033',
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -107,8 +113,8 @@ class _StudentListScreenState extends State<StudentListScreen>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(Icons.add),
         tooltip: 'Thêm sinh viên',
+        child: Icon(Icons.add),
       ),
       bottomNavigationBar: BottomTabBarWidget(
         tabController: _tabController,

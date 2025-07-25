@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:go_router/go_router.dart';
+// import 'package:http/http.dart' as http;
+// import 'dart:convert';
 
-import 'package:test/pages/home/studentlist_page.dart';
+// import 'package:test/pages/home/studentlist_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,47 +16,47 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _isLoading = false;
-  String? _errorMessage;
+  final bool _isLoading = false;
+  // String? _errorMessage;
 
-  Future<void> _login() async {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-        _errorMessage = null;
-      });
+  // Future<void> _login() async {
+  //   if (_formKey.currentState!.validate()) {
+  //     setState(() {
+  //       _isLoading = true;
+  //       _errorMessage = null;
+  //     });
 
-      try {
-        final response = await http.post(
-          Uri.parse('http://10.0.2.2:5000/api/login'),
-          headers: {'Content-Type': 'application/json'},
-          body: jsonEncode({
-            'userName': _emailController.text,
-            'pass': _passwordController.text,
-          }),
-        );
+  //     try {
+  //       final response = await http.post(
+  //         Uri.parse('http://10.0.2.2:5000/api/login'),
+  //         headers: {'Content-Type': 'application/json'},
+  //         body: jsonEncode({
+  //           'userName': _emailController.text,
+  //           'pass': _passwordController.text,
+  //         }),
+  //       );
 
-        if (response.statusCode == 200) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const StudentListScreen()),
-          );
-        } else {
-          setState(() {
-            _errorMessage = 'Đăng nhập thất bại. Vui lòng kiểm tra lại.';
-          });
-        }
-      } catch (e) {
-        setState(() {
-          _errorMessage = 'Lỗi kết nối. Vui lòng thử lại.';
-        });
-      } finally {
-        setState(() {
-          _isLoading = false;
-        });
-      }
-    }
-  }
+  //       if (response.statusCode == 200) {
+  //         Navigator.pushReplacement(
+  //           context,
+  //           MaterialPageRoute(builder: (context) => const StudentListScreen()),
+  //         );
+  //       } else {
+  //         setState(() {
+  //           _errorMessage = 'Đăng nhập thất bại. Vui lòng kiểm tra lại.';
+  //         });
+  //       }
+  //     } catch (e) {
+  //       setState(() {
+  //         _errorMessage = 'Lỗi kết nối. Vui lòng thử lại.';
+  //       });
+  //     } finally {
+  //       setState(() {
+  //         _isLoading = false;
+  //       });
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -183,9 +184,10 @@ class _LoginPageState extends State<LoginPage> {
                             ? CircularProgressIndicator()
                             : ElevatedButton(
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    _login();
-                                  }
+                                  // if (_formKey.currentState!.validate()) {
+                                  //   _login();
+                                  // }
+                                  context.goNamed('studentList');
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.orange,
@@ -216,16 +218,16 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              if (_errorMessage != null)
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Center(
-                    child: Text(
-                      _errorMessage!,
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  ),
-                ),
+              // if (_errorMessage != null)
+              //   Padding(
+              //     padding: EdgeInsets.only(top: 10),
+              //     child: Center(
+              //       child: Text(
+              //         _errorMessage!,
+              //         style: TextStyle(color: Colors.red),
+              //       ),
+              //     ),
+              //   ),
             ],
           ),
         ),
