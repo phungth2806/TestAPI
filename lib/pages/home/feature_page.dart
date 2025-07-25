@@ -7,17 +7,50 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea( // Đảm bảo không bị lấn status bar
-      child: Scaffold(
+    return  Scaffold(
         backgroundColor: const Color(0xFFF8F8FA),
-        body: Column(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFFFBB714),
+          toolbarHeight: 55,
+          automaticallyImplyLeading: false,
+          title: Row(
+            children: [
+              SvgPicture.asset('assets/img/back-svgrepo-com.svg', height: 30),
+              const SizedBox(width: 10),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Tìm kiếm...',
+                    hintStyle: const TextStyle(fontSize: 14),
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  'assets/img/search-alt-w-svgrepo-com.svg',
+                  width: 16,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        body:SafeArea(
+          child: Column(
           children: const [
-            HeaderBar(),
             Expanded(child: MainContent()),
             // FooterBar(), // Có thể mở nếu cần
           ],
         ),
-      ),
+        ),
     );
   }
 }

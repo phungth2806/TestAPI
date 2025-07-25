@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 class ThongTinSinhVienScreen extends StatelessWidget {
   const ThongTinSinhVienScreen({super.key});
 
@@ -7,10 +8,33 @@ class ThongTinSinhVienScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F8FA),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFFBB714),
+        automaticallyImplyLeading: false,
+        toolbarHeight: 55,
+        titleSpacing: 0,
+        title: Row(
+          children: [
+            const SizedBox(width: 10),
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: SvgPicture.asset("assets/img/back-svgrepo-com.svg", height: 25),
+            ),
+            const SizedBox(width: 10),
+            const Text(
+              'Thông tin sinh viên',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xFFF8F8FA),
+                fontSize: 16,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [
-            const HeaderBar(),
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.only(bottom: 30),
@@ -46,6 +70,7 @@ class ThongTinSinhVienScreen extends StatelessWidget {
     );
   }
 }
+
 
 class HeaderBar extends StatelessWidget {
   const HeaderBar({super.key});
