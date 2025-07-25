@@ -134,12 +134,12 @@ class InfoBlock extends StatelessWidget {
                 Text(
                   title,
                   style: const TextStyle(
-                    color: Color(0xFFFBB714),
+                    color: Color(0xFF333333),
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1,
                   ),
                 ),
-                const Divider(color: Colors.grey),
+
               ],
             ),
           ),

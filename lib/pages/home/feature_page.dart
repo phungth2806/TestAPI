@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'record_page.dart'; // <-- Đặt đúng tên file chứa trang Hồ sơ
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea( // Đảm bảo nội dung không bị đè lên status bar
+    return SafeArea( // Đảm bảo không bị lấn status bar
       child: Scaffold(
         backgroundColor: const Color(0xFFF8F8FA),
         body: Column(
           children: const [
             HeaderBar(),
             Expanded(child: MainContent()),
-            // FooterBar(),
+            // FooterBar(), // Có thể mở nếu cần
           ],
         ),
       ),
@@ -88,20 +90,21 @@ class MainContent extends StatelessWidget {
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Nguyễn Ý Phương', style: TextStyle(fontSize: 20, color: Color(0xFF333333))),
+                    Text('Nguyễn Ý Phương',
+                        style: TextStyle(fontSize: 20, color: Color(0xFF333333))),
                     Text('Lớp: 47K14', style: TextStyle(color: Color(0xFF333333))),
                   ],
                 ),
               ],
             ),
           ),
-          buildFeatureBlock("Thông tin cơ bản", [
+          buildFeatureBlock(context, "Thông tin cơ bản", [
             Feature(icon: "record-svgrepo-com.png", label: "Hồ sơ"),
             Feature(icon: "schedules-svgrepo-com.svg", label: "Lịch học"),
             Feature(icon: "score-svgrepo-com.svg", label: "Điểm số"),
             Feature(icon: "invoice-svgrepo-com.svg", label: "Học phí"),
           ]),
-          buildFeatureBlock("Gần đây", [
+          buildFeatureBlock(context, "Gần đây", [
             Feature(icon: "score-svgrepo-com.svg", label: "Điểm số"),
             Feature(icon: "invoice-svgrepo-com.svg", label: "Học phí"),
           ]),
@@ -110,7 +113,7 @@ class MainContent extends StatelessWidget {
     );
   }
 
-  Widget buildFeatureBlock(String title, List<Feature> features) {
+  Widget buildFeatureBlock(BuildContext context, String title, List<Feature> features) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       padding: const EdgeInsets.all(15),
@@ -127,47 +130,39 @@ class MainContent extends StatelessWidget {
             childAspectRatio: 1,
             mainAxisSpacing: 20,
             crossAxisSpacing: 20,
-            children: features.map((f) => buildFeatureItem(f)).toList(),
+            children: features.map((f) => buildFeatureItem(context, f)).toList(),
           )
         ],
       ),
     );
   }
 
-  Widget buildFeatureItem(Feature feature) {
+  Widget buildFeatureItem(BuildContext context, Feature feature) {
     final isSvg = feature.icon.toLowerCase().endsWith('.svg');
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        isSvg
-            ? SvgPicture.asset("assets/img/${feature.icon}", height: 50)
-            : Image.asset("assets/img/${feature.icon}", height: 50),
-        const SizedBox(height: 5),
-        Text(feature.label, textAlign: TextAlign.center),
-      ],
+
+    return GestureDetector(
+      onTap: () {
+        if (feature.label == "Hồ sơ") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ThongTinSinhVienScreen()),
+          );
+        }
+        // Có thể thêm các điều kiện khác tùy label
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          isSvg
+              ? SvgPicture.asset("assets/img/${feature.icon}", height: 50)
+              : Image.asset("assets/img/${feature.icon}", height: 50),
+          const SizedBox(height: 5),
+          Text(feature.label, textAlign: TextAlign.center),
+        ],
+      ),
     );
   }
 }
-
-// class FooterBar extends StatelessWidget {
-//   const FooterBar({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: 55,
-//       padding: const EdgeInsets.symmetric(horizontal: 30),
-//       color: Colors.white,
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: [
-//           SvgPicture.asset('assets/img/house-svgrepo-com.svg', height: 30),
-//           SvgPicture.asset('assets/img/setting-svgrepo-com.svg', height: 30),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class Feature {
   final String icon;
