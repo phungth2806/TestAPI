@@ -47,6 +47,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  flutter_svg: ^2.0.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,6 +64,25 @@ flutter:
     - assets/Background.JPG
     - assets/DUELOGO.png
     - assets/logoDue.jpg
+    # cua em Phuong
+    - assets/img/485364014_1044728151022120_3633524392030252214_n.jpg
+    - assets/img/account-customize-man-svgrepo-com.svg
+    - assets/img/account-svgrepo-com.svg
+    - assets/img/avatar-trang-4.jpg
+    - assets/img/back-svgrepo-com.svg
+    - assets/img/back-svgrepo-com (1).svg
+    - assets/img/house-svgrepo-com.svg
+    - assets/img/invoice-svgrepo-com.svg
+    - assets/img/record-svgrepo-com.png
+    - assets/img/record-svgrepo-com.svg
+    - assets/img/ring-svgrepo-com.svg
+    - assets/img/ring-svgrepo-com (1).png
+    - assets/img/schedule-svgrepo-com.svg
+    - assets/img/schedules-svgrepo-com.svg
+    - assets/img/score-svgrepo-com.svg
+    - assets/img/search-alt-svgrepo-com.svg
+    - assets/img/search-alt-w-svgrepo-com.svg
+    - assets/img/setting-svgrepo-com.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
